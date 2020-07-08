@@ -4,7 +4,7 @@ import config
 from nets import nets_factory
 
 # 不同字符数量
-CHAR_SET_LEN = 10
+CHAR_SET_LEN = config.CHAR_SET_LEN
 # 图片高度
 IMAGE_HEIGHT = config.IMAGE_HEIGHT
 # 图片宽度
@@ -12,8 +12,8 @@ IMAGE_WIDTH = config.IMAGE_WIDTH
 # 批次
 BATCH_SIZE = 25
 
-# tfrecord文件存放路径
-TFRECORD_FILE = "captcha/train.tfrecords"
+# tf_record文件存放路径
+TF_RECORD_FILE = config.TF_RECORD_DIR + "train.tfrecords"
 
 
 # 从tfrecord读出数据
@@ -48,7 +48,7 @@ def read_and_decode(filename):
 
 
 # 获取图片数据和标签
-image, label0, label1, label2, label3 = read_and_decode(TFRECORD_FILE)
+image, label0, label1, label2, label3 = read_and_decode(TF_RECORD_FILE)
 
 # 使用shuffle_batch打乱数据顺序
 image_batch, label_batch0, label_batch1, label_batch2, label_batch3 = tf.train.shuffle_batch(
@@ -116,7 +116,6 @@ with tf.Session() as sess:
 
     for i in range(4001):
         # 获取一个批次的数据和标签
-        # 获取一个批次的数据和标签
         b_image, b_label0, b_label1, b_label2, b_label3 = sess.run(
             [image_batch, label_batch0, label_batch1, label_batch2, label_batch3])
         # 优化模型
@@ -138,7 +137,7 @@ with tf.Session() as sess:
             # 保存模型
             # if acc0 > 0.90 and acc1 > 0.90 and acc2 > 0.90 and acc3 > 0.90:
             if i == 4000:
-                saver.save(sess, "models/crack_captcha.model", global_step=i)
+                saver.save(sess, config.MODELS_DIR + "crack_captcha.model", global_step=i)
                 break
     coord.request_stop()
     coord.join(threads)

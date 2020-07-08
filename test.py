@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 不同字符数量
-CHAR_SET_LEN = 60
+CHAR_SET_LEN = 10
 # 图片高度
 IMAGE_HEIGHT = 60
 # 图片宽度

@@ -1,19 +1,21 @@
-import tensorflow as tf
 import os
 import random
-import math
 import sys
-from PIL import Image
+
 import numpy as np
+import tensorflow as tf
+from PIL import Image
+
+import config
 
 # 验证集数量
 _NUM_TEST = 500
 # 随机种子
 _RANDOM_SEED = 0
 # 数据集路径
-DATASET_DIR = "images/"
+DATASET_DIR = config.IMAGE_DIR
 # tfrecord文件存放路径
-TFRECORD_DIR = "captcha/"
+TFRECORD_DIR = config.TFRECORD_DIR
 
 
 # 判断tfrecord文件是否存在
