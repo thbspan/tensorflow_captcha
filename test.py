@@ -108,7 +108,7 @@ with tf.Session() as sess:
         plt.axis('off')
         plt.show()
         # 打印标签
-        print('label:', chr(b_label0[0]), chr(b_label1[0]), chr(b_label2[0]), chr(b_label3[0]))
+        print('label:', b_label0[0], b_label1[0], b_label2[0], b_label3[0])
         # 预测
         label0, label1, label2, label3 = sess.run([predict0, predict1, predict2, predict3], feed_dict={x: b_image})
         # 打印预测值
