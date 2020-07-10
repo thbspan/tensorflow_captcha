@@ -15,7 +15,7 @@ _RANDOM_SEED = 0
 # 数据集路径
 DATASET_DIR = config.IMAGE_DIR
 # tfrecord文件存放路径
-TFRECORD_DIR = config.TFRECORD_DIR
+TFRECORD_DIR = config.TF_RECORD_DIR
 
 
 # 判断tfrecord文件是否存在
@@ -29,12 +29,12 @@ def _dataset_exists(dataset_dir):
 
 # 获取所有验证码图片
 def _get_filenames_and_classes(dataset_dir):
-    photo_filenames = []
+    photo_file_names = []
     for filename in os.listdir(dataset_dir):
         # 获取文件路径
         path = os.path.join(dataset_dir, filename)
-        photo_filenames.append(path)
-    return photo_filenames
+        photo_file_names.append(path)
+    return photo_file_names
 
 
 def int64_feature(values):
@@ -81,7 +81,7 @@ def _convert_dataset(split_name, filenames):
                     labels = filename.split('/')[-1][0:4]
                     num_labels = []
                     for j in range(4):
-                        num_labels.append(int(labels[j]))
+                        num_labels.append(config.convert_to_num(labels[j]))
 
                     # 生成protocol数据类型
                     example = image_to_tfexample(image_data, num_labels[0], num_labels[1], num_labels[2], num_labels[3])

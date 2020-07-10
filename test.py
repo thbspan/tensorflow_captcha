@@ -1,16 +1,16 @@
-import os
+import matplotlib.pyplot as plt
 import tensorflow as tf
 from PIL import Image
+
+import config
 from nets import nets_factory
-import numpy as np
-import matplotlib.pyplot as plt
 
 # 不同字符数量
-CHAR_SET_LEN = 10
+CHAR_SET_LEN = config.CHAR_SET_LEN
 # 图片高度
-IMAGE_HEIGHT = 60
+IMAGE_HEIGHT = config.IMAGE_HEIGHT
 # 图片宽度
-IMAGE_WIDTH = 160
+IMAGE_WIDTH = config.IMAGE_WIDTH
 # 批次
 BATCH_SIZE = 1
 # tfrecord文件存放路径
@@ -108,11 +108,17 @@ with tf.Session() as sess:
         plt.axis('off')
         plt.show()
         # 打印标签
-        print('label:', b_label0[0], b_label1[0], b_label2[0], b_label3[0])
+        print('label:', config.revert_to_char(b_label0[0]),
+              config.revert_to_char(b_label1[0]),
+              config.revert_to_char(b_label2[0]),
+              config.revert_to_char(b_label3[0]))
         # 预测
         label0, label1, label2, label3 = sess.run([predict0, predict1, predict2, predict3], feed_dict={x: b_image})
         # 打印预测值
-        print('predict:', label0, label1, label2, label3)
+        print('predict:', config.revert_to_char(label0),
+              config.revert_to_char(label1),
+              config.revert_to_char(label2),
+              config.revert_to_char(label3))
         # 通知其他线程关闭
     coord.request_stop()
     # 其他所有线程关闭之后，这一函数才能返回
