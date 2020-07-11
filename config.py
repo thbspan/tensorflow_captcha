@@ -21,7 +21,7 @@ MODELS_DIR = "models/"
 
 def convert_to_num(char):
     if char >= 'a':
-        return ord(char) - ord('a') + 35
+        return ord(char) - ord('a') + 36
     elif char >= 'A':
         return ord(char) - ord('A') + 10
     else:
@@ -30,7 +30,7 @@ def convert_to_num(char):
 
 def revert_to_char(num):
     if num >= 35:
-        return chr(ord('a') + num - 35)
+        return chr(ord('a') + num - 36)
     elif num >= 10:
         return chr(ord('A') + num - 10)
     else:

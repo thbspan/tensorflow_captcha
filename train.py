@@ -10,7 +10,7 @@ IMAGE_HEIGHT = config.IMAGE_HEIGHT
 # 图片宽度
 IMAGE_WIDTH = config.IMAGE_WIDTH
 # 批次
-BATCH_SIZE = 25
+BATCH_SIZE = 50
 
 # tf_record文件存放路径
 TF_RECORD_FILE = config.TF_RECORD_DIR + "train.tfrecords"
