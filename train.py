@@ -104,8 +104,11 @@ with tf.Session() as sess:
     correct_prediction3 = tf.equal(tf.argmax(one_hot_labels3, 1), tf.argmax(logits3, 1))
     accuracy3 = tf.reduce_mean(tf.cast(correct_prediction3, tf.float32))
 
-    # 用于保存模型
     saver = tf.train.Saver()
+    # 从上次训练位置恢复训练
+    checkpoint_state = tf.train.get_checkpoint_state(config.MODELS_DIR)
+    if checkpoint_state and checkpoint_state.model_checkpoint_path:
+        saver.restore(sess, checkpoint_state.model_checkpoint_path)
     # 初始化
     sess.run(tf.global_variables_initializer())
 
