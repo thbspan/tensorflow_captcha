@@ -20,8 +20,8 @@ pyparsing==2.4.7
 python-dateutil==2.8.1
 six==1.15.0
 tensorboard==1.15.0
-tensorflow==1.15.3
-tensorflow-estimator==1.15.1
+tensorflow==1.15.4
+tensorflow-estimator==1.15.2
 termcolor==1.1.0
 Werkzeug==1.0.1
 wrapt==1.12.1
